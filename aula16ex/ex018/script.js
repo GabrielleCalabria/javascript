@@ -21,30 +21,45 @@ function inLista (num, lis) {
 
 function adicionar() {
     if(isNumero(numero.value) && !inLista(numero.value, valores)) {
-        
+        valores.push(Number(numero.value))
+        let item = document.createElement('option')
+        item.text = `Valor ${numero.value} adicionado.`
+        lista.appendChild(item)
+        res.innerHTML = ''
     } else {
         window.alert('Valor invalido ou encontrado na lista')
     }
 
+    numero.value = ''
+    numero.focus()
 }
 
+function finalizar () {
+    if(valores.length == 0) {
+        window.alert('Adicione valores antes de finalizar!')
+    } else {
+        let total = valores.length
+        let maior = valores[0]
+        let menor = valores [0]
+        let soma = 0
+        let media = 0 
 
-/* num.push() //acrescentar valores no array sem chave de identificacao
-num.sort() //ordena os valore em ordem crescente
+        for(let pos in valores) {
+            soma += valores [pos]
+            if(valores[pos] > maior) 
+                maior = valores[pos]
+            if(valores[pos] < menor)
+                menor = valores[pos]
+        }
 
- function finalizar () 
-    
-lista.innerHTML = ''
-
-
-
-let item = document.createElement('option')
-
-`Ao todo temos ${} números cadastrados.`
-`O menor valor informado foi ${}.`
-`Somando todos os valores, temos ${}.`
-`A média dos valores digitados é ${}.`
-
-*/
+        media = soma / total 
+        res.innerHTML = ''
+        res.innerHTML += `<p> Ao todo temos ${total} números cadastrados.</p>`
+        res.innerHTML += `<p> O maior valor informado foi ${maior}.</p>`
+        res.innerHTML += `<p> O menor valor informado foi ${menor}.</p>`
+        res.innerHTML += `<p> Somando todos os valores, temos ${soma}. </p>`
+        res.innerHTML += `<p> A média dos valores digitados é ${media}. </p>`
+    }
+}
 
 
